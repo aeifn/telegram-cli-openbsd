@@ -12,5 +12,5 @@
 <     fd = open (wrdexp.we_wordv[0], O_RDONLY | O_BINARY);
 <   wordfree(&wrdexp);
 ---
->     fd = open (glb.we_pathv[0], O_RDONLY | O_BINARY);
+>     fd = open (glb.gl_pathv[0], O_RDONLY | O_BINARY);
 >   globfree(&glb);
