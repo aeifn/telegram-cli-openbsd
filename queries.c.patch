@@ -1,0 +1,16 @@
+34c34
+< #include <wordexp.h>
+---
+> #include <glob.h>
+2124,2125c2124,2125
+<   wordexp_t wrdexp;
+<   int status = wordexp(file_name,&wrdexp,0);
+---
+>   glob_t glb;
+>   int status = glob(file_name,0, NULL, &glb);
+2128,2129c2128,2129
+<     fd = open (wrdexp.we_wordv[0], O_RDONLY | O_BINARY);
+<   wordfree(&wrdexp);
+---
+>     fd = open (glb.we_globv[0], O_RDONLY | O_BINARY);
+>   globfree(&glb);

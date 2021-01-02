@@ -1,0 +1,16 @@
+doas pkg_add libconfig libexecinfo lua python
+
+rm -rf ./tg
+git clone --recursive https://github.com/kenorb-contrib/tg
+
+patch tg/Makefile.in < Makefile.in.patch
+patch tg/tgl/queries.c < queries.c.patch
+
+cd tg
+./configure \
+	--disable-json \
+	CFLAGS="-w" \
+	LDFLAGS="-Wl,--allow-multiple-definition,-L/usr/local/lib/" \
+	CFLAGS="-I/usr/local/include/"
+gmake
+gmake DESTDIR=$HOME/telegram-cli-dist/ install
